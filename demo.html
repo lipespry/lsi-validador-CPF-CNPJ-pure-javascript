@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <title>Validador CPF e CNPJ por LipESprY</title>
+        <meta charset="utf-8">
+        <script src="lsi-validador-cpf-cnpj.js"></script>
+    </head>
+    <body>
+        <h1>Validador CPF e CNPJ por LipESprY</h1>
+
+
+        <h2>CPF: Seletor em vários inputs - querySelectorAll:</h2>
+        <input type="text" class="selectorAll">
+        <input type="text" class="selectorAll">
+
+
+        <h2>CNPJ: Seletor em um único input - querySelector:</h2>
+        <input type="text" class="selector">
+
+
+        <h2>CPF e CNPJ: Seletor em um único input - getElementById:</h2>
+        <input type="text" id="byId">
+
+
+        <br><br><br><br><hr>
+        <a href="mailto: felipemdeoliveira@live.com">Entre em contato</a> ou <a href="https://github.com/lipespry/lsi-validador-CPF-CNPJ-pure-javascript">visite o repositório deste projeto no GitHub!</a>
+        <script>
+            document.querySelectorAll('input.selectorAll').LSIValidaCPFCPNJ({
+                tipo: 'cpf',
+                valido: function(){
+                    console.log(this.alvo); // Retorna o input em questão
+                }
+            });
+
+            document.querySelector('.selector').LSIValidaCPFCPNJ({
+                tipo: 'cnpj',
+                mascara: false,
+                invalido: function(){
+                    alert('Digitou CNPJ inválido!');
+                }
+            });
+
+            let valida = new LSIValidaCPFCPNJ({
+                alvo: document.getElementById('byId'),
+                tipo: 'cpfcnpj',
+                valido: function(){
+                    console.log('Documento CPF/CNPJ válido!');
+                    this.alvo.style.backgroundColor = 'rgb(180, 255, 180)';
+                },
+                invalido: function(){
+                    console.log('Documento CPF/CNPJ inválido!');
+                    this.alvo.style.backgroundColor = 'rgb(255, 180, 180)';
+                },
+                vazio: function(){
+                    alert('Documento não pode ser vazio!');
+                    this.alvo.style.backgroundColor = 'rgb(255, 180, 180)';
+                }
+            });
+        </script>
+    </body>
+</html>
